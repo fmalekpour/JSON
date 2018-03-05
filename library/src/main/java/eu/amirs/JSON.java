@@ -12,6 +12,8 @@ import java.util.*;
 
 public class JSON {
 
+    private static final boolean isDebug = false;
+    
     private JSONObject jsObj;
     private JSONArray jsArr;
     private Object value;
@@ -30,14 +32,14 @@ public class JSON {
             try {
                 jsObj = new JSONObject(jsonString.toString());
             } catch (JSONException e) {
-                e.printStackTrace();
+                if(JSON.isDebug)e.printStackTrace();
             }
         } else if (jsonString.toString().trim().startsWith("[")) {
             //json array
             try {
                 jsArr = new JSONArray(jsonString.toString());
             } catch (JSONException e) {
-                e.printStackTrace();
+                if(JSON.isDebug)e.printStackTrace();
             }
 
         } else
@@ -74,7 +76,7 @@ public class JSON {
                 return new JSON(obj);
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            if(JSON.isDebug)e.printStackTrace();
         }
 
         return new JSON(null);
@@ -88,7 +90,7 @@ public class JSON {
         try {
             return new JSON(jsArr.get(index));
         } catch (JSONException e) {
-            e.printStackTrace();
+            if(JSON.isDebug)e.printStackTrace();
         }
 
         return new JSON(null);
@@ -237,7 +239,7 @@ public class JSON {
         try {
             jsonObject.putOpt(Key, normalizedObject);
         } catch (JSONException e) {
-            e.printStackTrace();
+            if(JSON.isDebug)e.printStackTrace();
         }
         this.jsObj = jsonObject;
 
@@ -287,7 +289,7 @@ public class JSON {
             }
 
         } catch (JSONException e) {
-            e.printStackTrace();
+            if(JSON.isDebug)e.printStackTrace();
         }
 
 
@@ -318,7 +320,7 @@ public class JSON {
                 }
 
             } catch (JSONException e) {
-                e.printStackTrace();
+                if(JSON.isDebug)e.printStackTrace();
             }
 
         }
@@ -358,7 +360,7 @@ public class JSON {
 
                 }
             } catch (JSONException e) {
-                e.printStackTrace();
+                if(JSON.isDebug)e.printStackTrace();
             }
 
 
@@ -395,7 +397,7 @@ public class JSON {
 
                 mainDic.put((String) values[i], valueObject == null ? JSONObject.NULL:valueObject);
             } catch (JSONException e) {
-                e.printStackTrace();
+                if(JSON.isDebug)e.printStackTrace();
             }
         }
         return mainDic;
